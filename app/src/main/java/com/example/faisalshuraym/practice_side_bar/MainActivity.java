@@ -22,18 +22,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // find drawer
+        // find drawer, Navigation view id and set
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // write something here
+        // button in top left corner
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-
+        // to display the fragment when lunching the app
         if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container
                     , new StoresFragment()).commit();
@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
+    @Override // items selected in navigation bar
+
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem){
         switch (menuItem.getItemId()){
             case R.id.nav_store:
