@@ -1,3 +1,9 @@
+/*
+Author: Faisal Shuraym
+
+ */
+
+
 package com.example.faisalshuraym.practice_side_bar;
 
 import android.os.Bundle;

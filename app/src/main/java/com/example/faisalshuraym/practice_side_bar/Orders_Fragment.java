@@ -1,3 +1,8 @@
+/*
+Author: Faisal Shuraym
+
+ */
+
 package com.example.faisalshuraym.practice_side_bar;
 
 import android.os.Bundle;
@@ -15,4 +20,8 @@ public class Orders_Fragment extends Fragment {
         return inflater.inflate(R.layout.fragment_orders,container,false);
 
     }
+    public static void main (String args[]){
+
+    }
 }
+
