@@ -19,5 +19,7 @@ public class StoresFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_stores,container,false);
 
+        // here also create object of store example (Wall mart, publix, Burger King ) try to pick stores form US so i know
+
     }
 }
