@@ -9,27 +9,77 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Orders_Fragment extends Fragment {
 
-    static ArrayList<String> ListOfItems;
-    private static final String TAG = "Orders_Fragment";
+    ListView listViewOrders;
+    List<Order> orderList;
+    FirebaseDatabase database;
+    DatabaseReference databaseOrders;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_orders, container, false);
+        //initialize layout for view
+        View view = inflater.inflate(R.layout.fragment_orders, container, false);
+        //firebase database initialize
+
+        database = FirebaseDatabase.getInstance();
+        databaseOrders = database.getReference("Orders");
+
+        //matching listview from layout.
+        listViewOrders = (ListView) view.findViewById(R.id.listView);
+        //orderlist initialize
+        orderList = new ArrayList<>();
+
+        //Firebase Data change Listener.
+        databaseOrders.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                orderList.clear();
+
+                //Get value from firebase.
+                for (DataSnapshot orderSnapshot : dataSnapshot.getChildren()){
+                    Order order = orderSnapshot.getValue(Order.class);
+                    orderList.add(order);
+                }
+                OrderList adapter = new OrderList(getActivity(), orderList);
+                listViewOrders.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Failed to read value
+
+
+            }
+
+        });
+
+        return view;
 
     }
 
-    // Here are the place that i want you to create object of like orders example of order is (2 water ,1 milk)
-    // you get the idea
+
+    @Override
+    public void onStart() {
+        super.onStart();
 
 
+    }
 }
