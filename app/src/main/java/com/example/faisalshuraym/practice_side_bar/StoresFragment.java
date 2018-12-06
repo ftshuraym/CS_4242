@@ -70,7 +70,8 @@ public class StoresFragment extends Fragment{
         storeList = new ArrayList<>();
 
         RequestQueue queue = Volley.newRequestQueue(this.getActivity());
-        String url ="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.83334,-83.28032&radius=1500&type=restaurant&key=AIzaSyB6b_B1OS87FsUFML-P50STWJQOGGLps84";
+        String url ="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=30.83334,-83.28032&radius=1500&type=restaurant&key=APIKEYHERE";
+        
 
         // prepare the Request
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
